@@ -21,7 +21,7 @@ do
   key="$1"
   case $key in
     -h|--help)
-      echo "bin/download_dependencies.sh [--gmp gmp|mpir] [--host HOST]"
+      echo "bin/download_dependencies.sh [--gmp gmp|mpir] [--host HOST] [--with-pic]"
       exit
     ;;
     --gmp)
@@ -41,6 +41,9 @@ do
       shift
       shift
     ;;
+    --with-pic)
+      WITH_PIC="--with-pic"
+      shift
   esac
 done
 
@@ -78,7 +81,8 @@ if [ $USE_GMP = "gmp" ]; then
       --enable-fat\
       --enable-shared=yes\
       --enable-static=no\
-      --host=$HOSTARG
+      --host=$HOSTARG\
+      $WITH_PIC
     make -j3
     make install
   cd ..
@@ -136,7 +140,8 @@ cd mpfr-$MPFRVER
   ./configure --prefix=$PREFIX\
     --with-gmp=$PREFIX\
     --enable-shared=yes\
-    --enable-static=no
+    --enable-static=no\
+    $WITH_PIC
   make -j3
   make install
 cd ..
@@ -153,7 +158,8 @@ cd flint-$FLINTVER
   ./configure --prefix=$PREFIX\
     $FLINTARB_WITHGMP\
     --with-mpfr=$PREFIX\
-    --disable-static
+    --disable-static\
+    $WITH_PIC
   make -j3
   make install
 cd ..
@@ -172,7 +178,8 @@ cd arb-$ARBVER
     --with-flint=$PREFIX\
     $FLINTARB_WITHGMP\
     --with-mpfr=$PREFIX\
-    --disable-static
+    --disable-static\
+    $WITH_PIC
   make -j3
   make install
 cd ..
