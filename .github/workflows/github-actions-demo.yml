@@ -17,9 +17,9 @@ jobs:
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
         with:
-          # location: D:\
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-cc patch m4 lzip wget tar make diffutils unzip
+          install: git mingw-w64-x86_64-cc patch m4 lzip curl tar make diffutils unzip
+      - uses: actions/checkout@v3
       - name: Build Dependencies
         run: bin/cibw_before_build_windows.sh
