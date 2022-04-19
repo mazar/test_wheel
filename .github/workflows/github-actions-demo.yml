@@ -1,17 +1,20 @@
-name: GitHub Actions Demo
+name: GitHub MSYS2
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  build-wheel:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}    
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-cc patch m4 lzip wget tar make diffutils unzip
+      - name: CI-Build
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          echo 'Running in MSYS2!'
+          ./ci-build.sh
