@@ -22,6 +22,4 @@ jobs:
           update: true
           install: git mingw-w64-x86_64-cc patch m4 lzip wget tar make diffutils unzip
       - name: Build Dependencies
-        run: |
-          echo 'Running in MSYS2!'
-          bin/cibw_before_build_linux.sh --gmp gmp --host x86_64-pc-linux-gnu
+        run: bin/cibw_before_build_windows.sh
