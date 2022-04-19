@@ -2,19 +2,26 @@ name: GitHub MSYS2
 on: [push]
 
 jobs:
-  build-wheel:
-    runs-on: windows-latest
+  windows_wheels:
+    name: Build dependencies for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019]
+        
     defaults:
       run:
-        shell: msys2 {0}    
+        shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v2
-      - uses: msys2/setup-msys2@v2
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
         with:
+          # location: D:\
           msystem: MINGW64
           update: true
           install: git mingw-w64-x86_64-cc patch m4 lzip wget tar make diffutils unzip
-      - name: CI-Build
+      - name: Build Dependencies
         run: |
           echo 'Running in MSYS2!'
-          ./ci-build.sh
+          bin/cibw_before_build_linux.sh --gmp gmp --host x86_64-pc-linux-gnu
