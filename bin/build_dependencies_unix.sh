@@ -44,6 +44,7 @@ do
     --with-pic)
       WITH_PIC="--with-pic"
       shift
+    ;;
   esac
 done
 
