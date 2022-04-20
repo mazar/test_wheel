@@ -48,6 +48,9 @@ do
   esac
 done
 
+echo $WITH_PIC
+exit 1
+
 # ------------------------------------------------------------------------- #
 #                                                                           #
 # The build_variables.sh script sets variables specifying the versions to   #
