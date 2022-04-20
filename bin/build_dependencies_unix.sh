@@ -42,15 +42,11 @@ do
       shift
     ;;
     --pic)
-      WITH_PIC="--enable-fat --with-pic"
+      WITH_PIC="--with-pic"
       shift
     ;;
   esac
 done
-
-echo "# ------------------------------------------------------------------------- #"
-echo $WITH_PIC
-echo "# ------------------------------------------------------------------------- #"
 
 
 # ------------------------------------------------------------------------- #
@@ -88,6 +84,7 @@ if [ $USE_GMP = "gmp" ]; then
       --enable-shared=yes\
       --enable-static=no\
       --host=$HOSTARG\
+      --build=$HOSTARG\
       $WITH_PIC
     make -j3
     make install
