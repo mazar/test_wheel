@@ -84,7 +84,6 @@ if [ $USE_GMP = "gmp" ]; then
       --enable-shared=yes\
       --enable-static=no\
       --host=$HOSTARG\
-      --build=$HOSTARG\
       $WITH_PIC
     make -j3
     make install

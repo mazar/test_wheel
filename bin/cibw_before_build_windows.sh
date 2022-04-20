@@ -2,5 +2,5 @@
 
 bin/build_dependencies_unix.sh\
   --gmp gmp\
-  --host x86_64-pc-mingw64\
+  --host "x86_64-pc-mingw64"\
   --pic
