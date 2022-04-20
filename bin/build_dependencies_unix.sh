@@ -42,7 +42,7 @@ do
       shift
     ;;
     --pic)
-      WITH_PIC="--with-pic"
+      WITH_PIC="--enable-fat --with-pic"
       shift
     ;;
   esac
@@ -164,8 +164,7 @@ cd flint-$FLINTVER
   ./configure --prefix=$PREFIX\
     $FLINTARB_WITHGMP\
     --with-mpfr=$PREFIX\
-    --disable-static\
-    $WITH_PIC
+    --disable-static
   make -j3
   make install
 cd ..
@@ -184,8 +183,7 @@ cd arb-$ARBVER
     --with-flint=$PREFIX\
     $FLINTARB_WITHGMP\
     --with-mpfr=$PREFIX\
-    --disable-static\
-    $WITH_PIC
+    --disable-static
   make -j3
   make install
 cd ..
