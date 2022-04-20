@@ -41,7 +41,7 @@ do
       shift
       shift
     ;;
-    --with-pic)
+    --pic)
       WITH_PIC="--with-pic"
       shift
     ;;
