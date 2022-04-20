@@ -48,9 +48,6 @@ do
   esac
 done
 
-echo # ------------------------------------------------------------------------- #
-echo $HOSTARG
-echo # ------------------------------------------------------------------------- #
 
 # ------------------------------------------------------------------------- #
 #                                                                           #
@@ -86,7 +83,7 @@ if [ $USE_GMP = "gmp" ]; then
       --enable-fat\
       --enable-shared=yes\
       --enable-static=no\
-      --host=$HOSTARG\
+      --host=$HOST_ARG\
       $WITH_PIC
     make -j3
     make install
@@ -124,6 +121,7 @@ else
       --enable-fat\
       --enable-shared=yes\
       --enable-static=no\
+      --host=$HOST_ARG\
       --enable-gmpcompat
     make -j3
     make install
