@@ -172,10 +172,10 @@ cd ..
 #                                                                           #
 # ------------------------------------------------------------------------- #
 
-curl -O -L https://github.com/fredrik-johansson/arb/archive/refs/tags/$ARBVER.tar.gz
-mv $ARBVER.tar.gz arb-$ARBVER.tar.gz
-tar xf arb-$ARBVER.tar.gz
-cd arb-$ARBVER
+# curl -O -L https://github.com/fredrik-johansson/arb/archive/refs/tags/$ARBVER.tar.gz
+# mv $ARBVER.tar.gz arb-$ARBVER.tar.gz
+# tar xf arb-$ARBVER.tar.gz
+cd $GITHUB_WORKSPACE/arb
   ./configure --prefix=$PREFIX\
     --with-flint=$PREFIX\
     $FLINTARB_WITHGMP\
